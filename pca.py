@@ -33,10 +33,10 @@ def pca(data, dimen) :
 	print data;
 	print '------ new ------'
 	print restore;
+	print '-----------------'
+	return restore,vectors;
 
-	return vectors;
-
+# TEST
 if __name__ == '__main__' :
-	pic = Image.open('/home/wszt/图片/vimback1.png');
-	data = array(pic);
-	print data;
+	data = array([[1,5,6],[4,3,9],[4,2,9],[4,7,2]]);
+	pca(data, 2);	
