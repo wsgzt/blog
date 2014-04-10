@@ -1,0 +1,42 @@
+// 1. 第i个位置肯定是从第i-1个位置过去的
+// 2. 要第2次到达第i个位置，才能从i到达i+1
+// a：从开头第一次到达该位置的步数
+// b：沿着p走再回来需要的步数
+
+int n, p[1002];
+long a[1002], b[1002];
+long MOD = 1000000007;
+
+void init(){
+	scanf("%d", &n);
+	for(int i = 1; i <= n; i++){
+		scanf("%d", &p[i]);
+	}
+}
+
+void solve(){
+	int i, j, tmp;
+	
+	a[1] = b[1] = 1;
+
+	for(i = 2; i <= n; i++){
+		b[i] = 1;
+		for(j = p[i]; j < i; j++){
+			b[i] = b[i] + b[j] + 1;
+			if(b[i] > MOD){
+				b[i] -= MOD;
+			}
+		}
+		
+		a[i] = a[i-1] + 1 + b[i];
+		if(a[i] > MOD){
+			a[i] -= MOD;
+		}
+	}
+	printf("%ld\n", (a[n]+1) % MOD);
+}
+
+int main(){
+	init();
+	solve();
+}
