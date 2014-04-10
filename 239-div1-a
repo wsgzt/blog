@@ -1,0 +1,39 @@
+// 根据两边的三角形是相似的，这样计算出来一个三角形之后，另一个就知道了。
+// 暴力解决。
+int a, b;
+
+void init(){
+	scanf("%d %d", &a, &b);
+}
+
+void solve(){
+	int l = 1, r = a-1, tmp, ll, rr, aa = a*a;
+	while(l < a && r > 0){
+		tmp = l * l + r * r;
+		if(tmp < aa){
+			l++;
+			continue;
+		}
+		if(tmp > aa){
+			r--;
+			continue;
+		}
+		if(b*l%a == 0 && b*r%a == 0){
+			ll = b*r/a;
+			rr = b*l/a;
+			if(r != rr){
+				printf("YES\n%d %d\n%d %d\n%d %d\n", 0, 0, l, r, -ll, rr);
+				return;
+			}
+		}
+		l++;
+		r--;
+	}
+	printf("NO\n");
+}
+
+int main(){
+	init();
+	solve();
+	return 0;
+}
